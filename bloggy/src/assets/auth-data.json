@@ -1,0 +1,16 @@
+[
+  {
+    "id": 1,
+    "username": "wahmd",
+    "password": "1234",
+    "name": "waleed ahmad",
+    "role": "admin"
+  },
+  {
+    "id": 2,
+    "username": "windows",
+    "password": "12345",
+    "name": "bill gates",
+    "role": "admin"
+  }
+]
