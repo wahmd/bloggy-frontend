@@ -1,20 +1,10 @@
 <nav class="navbar navbar-expand-sm navbar-light bg-light">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">
+    <a class="navbar-brand" routerLink="/home" routerLinkActive="active">
       <h1>Bloggy</h1>
     </a>
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <ng-container *ngFor="let btnName of btns">
+
+    <!-- <ng-container *ngFor="let btnName of btns">
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
@@ -30,25 +20,21 @@
           </li>
         </ul>
       </div>
-    </ng-container>
+    </ng-container> -->
 
-    <div class="d-flex collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+    <div class="d-flex" id="navbarSupportedContent">
+      <ul class="mr-5 navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">username</a>
+          <a class="nav-link active" aria-current="page" href="#">{{
+            username | titlecase
+          }}</a>
         </li>
       </ul>
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a
-            class="nav-link active"
-            aria-current="page"
-            href="#"
-            routerLink="/login"
-            routerLinkActive="active"
-            ariaCurrentWhenActive="page"
-            >logout
-          </a>
+          <button type="button" class="btn btn-primary" (click)="logout()">
+            Logout
+          </button>
         </li>
       </ul>
     </div>

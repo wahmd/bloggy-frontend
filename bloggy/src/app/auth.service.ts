@@ -28,6 +28,7 @@ export class AuthService {
       id: user.id,
       username: user.username,
       role: user.role,
+      name: user.name,
     };
 
     // saving in local storage
@@ -39,5 +40,11 @@ export class AuthService {
 
   isLoggedIn() {
     return localStorage.getItem('data');
+  }
+
+  logout() {
+    localStorage.removeItem('data');
+    this.router.navigate(['login']);
+    this.toastr.success('Logout Successful!');
   }
 }
