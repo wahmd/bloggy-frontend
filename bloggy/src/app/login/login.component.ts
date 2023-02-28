@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import authJSON from '../../assets/auth-data.json';
 import { Router } from '@angular/router';
+import { AuthService } from '../auth.service';
 
 interface LoginForm {
   username: FormControl;
@@ -20,38 +21,16 @@ export class LoginComponent {
     password: new FormControl('', [Validators.required]),
   });
 
-  constructor(private toastr: ToastrService, private router: Router) {}
+  constructor(
+    private toastr: ToastrService,
+    private authService: AuthService
+  ) {}
 
-  public login() {
+  login() {
     if (!this.loginForm.valid) {
       this.toastr.error('Please fill all fields.');
       return;
     }
-
-    const { username, password } = this.loginForm.value;
-
-    const user = authJSON.find((item) => item && item.username === username);
-
-    if (!user) {
-      this.toastr.error("User doesn't exist!");
-      return;
-    }
-
-    if (user.password !== password) {
-      this.toastr.error('Authentication Failed!');
-      return;
-    }
-
-    const storageData = {
-      id: user.id,
-      username: user.username,
-      role: user.role,
-    };
-
-    // saving in local storage
-    localStorage.setItem('data', JSON.stringify(storageData));
-
-    this.toastr.success(`Welcome back ${user.name}`, 'Login Successful!');
-    this.router.navigate(['home']);
+    this.authService.login(this.loginForm.value);
   }
 }
